@@ -17,13 +17,13 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+//alumnos
+
 $router->get('/alumnos', 'AlumnoController@index');
 $router->post('/alumnos', 'AlumnoController@store');
-$router->get('/alumnos/{id}', 'AlumnoController@show');
+$router->get('/alumnos/{dni}', 'AlumnoController@show');
 $router->put('/alumnos/{id}', 'AlumnoController@update');
 $router->delete('/alumnos/{id}', 'AlumnoController@destroy');
-
-
 
 //capacidades
 
@@ -35,5 +35,8 @@ $router->delete('/capacidades/{id}', 'CapacidadController@destroy');
 
 //certificado
 
-$router->get('/alumnos/{id}/certificado', 'AlumnoController@getCertificado');
+$router->get('/certificados/{id}', 'CertificadoController@getCertificado');
+$router->post('/alumnos/{dni}/certificado', 'AlumnoController@addCertificado');//guardar certificado con las capacidades y el id del alumno
+
+
 

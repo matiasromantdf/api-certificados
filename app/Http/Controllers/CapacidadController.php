@@ -14,7 +14,6 @@ class CapacidadController extends Controller{
     public function store(Request $request){
         $capacidad = new Capacidad();
         $capacidad->nombre = $request->nombre;
-        $capacidad->descripcion = $request->descripcion;
         $capacidad->save();
         return response()->json($capacidad);
     }
@@ -27,7 +26,6 @@ class CapacidadController extends Controller{
     public function update(Request $request, $id){
         $capacidad = Capacidad::find($id);
         $capacidad->nombre = $request->nombre;
-        $capacidad->descripcion = $request->descripcion;
         $capacidad->save();
         return response()->json($capacidad);
     }
