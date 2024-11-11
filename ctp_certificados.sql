@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 09-11-2024 a las 14:19:28
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 12-11-2024 a las 00:26:08
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -45,28 +45,8 @@ INSERT INTO `alumnos` (`id`, `nombre`, `apellido`, `dni`, `created_at`, `updated
 (2, 'Aylen', 'Impa', 47268172, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (3, 'Claribel', 'Vidal', 46809863, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (4, 'Sandi', 'Almendras', 47811590, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(5, 'matias', 'roman', 36516516, '2024-11-08 23:00:45', '2024-11-08 23:00:45'),
+(5, 'matias', 'roman', 123, '2024-11-08 23:00:45', '2024-11-08 23:00:45'),
 (6, 'juan alberto', 'perez', 51515, '2024-11-08 23:01:25', '2024-11-08 23:01:25');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `alumnos_capacidades`
---
-
-CREATE TABLE `alumnos_capacidades` (
-  `id` int(11) NOT NULL,
-  `alumno_id` int(11) NOT NULL,
-  `capacidad_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
-
---
--- Volcado de datos para la tabla `alumnos_capacidades`
---
-
-INSERT INTO `alumnos_capacidades` (`id`, `alumno_id`, `capacidad_id`) VALUES
-(1, 5, 1),
-(2, 5, 4);
 
 -- --------------------------------------------------------
 
@@ -86,8 +66,8 @@ CREATE TABLE `capacidades` (
 --
 
 INSERT INTO `capacidades` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
-(1, 'Obtener, interpretar y procesar información oral y escrita', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 'Realizar la búsqueda de información utilizando diversidad de fuentes', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(1, 'Obtener, interpretar y procesar información oral y escrita.', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, 'Realizar la búsqueda de información utilizando diversidad de fuentes.', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (3, 'Analizar e intterpretar catalogos, informes y/o publicaiones sobre intrumentos, herramientas y equipos, con el objetivo de utilizarlos en tareas de diagnóstico, mantenimiento y/o reparación de componentes específicos del sistema eléctrico del automotor', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (4, 'Comprender el principio de funcionamiento de los motores de combustión interna e identificar las características y funciones de sus componentes y sistemas', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (5, 'Comprender el principio e funcionamiento del sistema electrico del automotor y sus circuitos auxiliares', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -107,6 +87,59 @@ INSERT INTO `capacidades` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
 (19, 'Registrar las tareas realizadas y sus resultados', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (20, 'Gestión comercial impositiva-administrativa', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `certificados`
+--
+
+CREATE TABLE `certificados` (
+  `alumno_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `certificados`
+--
+
+INSERT INTO `certificados` (`alumno_id`, `id`, `created_at`, `updated_at`) VALUES
+(5, 1, '2024-11-11 22:45:45', '2024-11-11 22:45:45'),
+(5, 2, '2024-11-11 22:48:19', '2024-11-11 22:48:19'),
+(5, 3, '2024-11-11 22:55:39', '2024-11-11 22:55:39'),
+(5, 4, '2024-11-11 22:56:05', '2024-11-11 22:56:05'),
+(5, 5, '2024-11-11 23:16:03', '2024-11-11 23:16:03');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `certificados_capacidades`
+--
+
+CREATE TABLE `certificados_capacidades` (
+  `certificado_id` int(11) NOT NULL,
+  `capacidad_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `certificados_capacidades`
+--
+
+INSERT INTO `certificados_capacidades` (`certificado_id`, `capacidad_id`) VALUES
+(2, 16),
+(2, 17),
+(2, 18),
+(3, 1),
+(3, 2),
+(3, 3),
+(4, 1),
+(4, 2),
+(4, 3),
+(5, 1),
+(5, 2),
+(5, 3);
+
 --
 -- Índices para tablas volcadas
 --
@@ -119,15 +152,15 @@ ALTER TABLE `alumnos`
   ADD UNIQUE KEY `dni` (`dni`);
 
 --
--- Indices de la tabla `alumnos_capacidades`
---
-ALTER TABLE `alumnos_capacidades`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indices de la tabla `capacidades`
 --
 ALTER TABLE `capacidades`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `certificados`
+--
+ALTER TABLE `certificados`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -141,16 +174,16 @@ ALTER TABLE `alumnos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT de la tabla `alumnos_capacidades`
---
-ALTER TABLE `alumnos_capacidades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT de la tabla `capacidades`
 --
 ALTER TABLE `capacidades`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT de la tabla `certificados`
+--
+ALTER TABLE `certificados`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
